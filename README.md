@@ -4,7 +4,10 @@ Purpose:
 This project aims to classify images as a properly fitted mask (Fully covered: mask covers nose and mouth), not properly fitted (partially covered: the nose or the mouth), and not wearing a mask (not covered). 
 
 Dataset:
-The dataset was obtained from Kaggle ( https://www.kaggle.com/datasets/jamesnogra/face-mask-usage ). The dataset partitioned into 70 % training set, 20 % validation set, 10 % testing set. The original dataset involves 4 classes: fully covered, not covered, not face, and partially covered. In this project, I used 3 classes, fully covered, not covered, and partially covered to train, validate, and test my CNN. I removed the not face class from the dataset. 
+The dataset was obtained from Kaggle ( https://www.kaggle.com/datasets/jamesnogra/face-mask-usage ). 
+I partitioned the dataset  into 70 % training set, 20 % validation set, 10 % testing set. I attached code for data partitioning in a seperate ipynb file. 
+
+The original dataset involves 4 classes: fully covered, not covered, not face, and partially covered. In this project, I used 3 classes, fully covered, not covered, and partially covered to train, validate, and test my CNN. I removed the not face class from the dataset. 
 
 Preprocessing my training set, validation set, and testing set:
 converted data into an array, using imread from OpenCV.  
