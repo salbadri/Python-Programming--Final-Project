@@ -1,5 +1,5 @@
-# Python-Programming--Final-Project
-Final Project- AI 551
+# Face Mask Usage
+
 Purpose:
 This project aims to classify images as a properly fitted mask (Fully covered: mask covers nose and mouth), not properly fitted (partially covered: the nose or the mouth), and not wearing a mask (not covered). 
 
