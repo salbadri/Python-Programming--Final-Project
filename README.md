@@ -30,8 +30,9 @@ I created my labels and features. Labels are the target variables (y) that are f
 
 I Normalized features, in the three sets (training, validation, and testing) by dividing by 255. Labels, for the three sets (training, validation, and testing) converted to a binary class matrix.
 
-* Model: 
-Convolutional Neural Network (CNN) to classify given images into fully covered, not covered, and partially covered. My CNN consists of a stack of 2D convolutional layers with relu activation function, and max-pooling layers interchangeably.
+
+I bult a Convolutional Neural Network (CNN) to classify given images into fully covered, not covered, and partially covered. 
+My CNN consists of a stack of 2D convolutional layers with relu activation function, and max-pooling layers interchangeably.
 
 Filters: size 32 for the first two convolutional layers, and filters of 64 for the last two convolutional layers. I tried different filter sizes 32, 64, and 128. 
 
@@ -54,7 +55,7 @@ I compiled the neural network. The loss function is categorical cross-entropy be
 
 I implemented early stopping to prevent my model from overfitting. we monitor validation loss if it is not improving after 5 epochs, stop the training data.
 
-* Results: 
+
 The CNN model achieved an accuracy of 97.83 % on the test set and a loss of 0.1499. I plotted the confusion metric to visualize model performance on the test set. We can infer that this model can predict the not covered class with high performance compared to the other two classes. And the model can predict a fully covered class with relatively higher accuracy than it can predict a partially covered. To further investigate the model, we draw predictions on a single image from each class. We found that this model can classify an image of a face from the fully covered class correctly with a likelihood of 99.99%. And this model can classify an image of a face from the not covered class correctly with a likelihood of 99.99 %. But the model failed to classify partially covered classes. Model misclassified an image from the partially covered class as not covered with a likelihood of 99.32 %.
 
 
