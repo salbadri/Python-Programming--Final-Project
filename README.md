@@ -1,9 +1,10 @@
 # Face Mask Usage
 
-#### -- Project Status: [ Completed]
+#### -- Project Status: [Completed]
 
 ## Project Intro/Objective
 The goal of this project is to classify images as a properly fitted mask (Fully covered: mask covers nose and mouth), not properly fitted (partially covered: the nose or the mouth), and not wearing a mask (not covered).
+This is a solo final project (Python Programming)
 
 ### Methods Used
 * Machine Learning
