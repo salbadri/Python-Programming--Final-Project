@@ -31,7 +31,7 @@ I created my labels and features. Labels are the target variables (y) that are f
 I Normalized features, in the three sets (training, validation, and testing) by dividing by 255. Labels, for the three sets (training, validation, and testing) converted to a binary class matrix.
 
 
-I bult a Convolutional Neural Network (CNN) to classify given images into fully covered, not covered, and partially covered. 
+I built a Convolutional Neural Network (CNN) to classify given images into fully covered, not covered, and partially covered. 
 My CNN consists of a stack of 2D convolutional layers with relu activation function, and max-pooling layers interchangeably.
 
 Filters: size 32 for the first two convolutional layers, and filters of 64 for the last two convolutional layers. I tried different filter sizes 32, 64, and 128. 
