@@ -59,6 +59,12 @@ I implemented early stopping to prevent my model from overfitting. we monitor va
 
 The CNN model achieved an accuracy of 97.83 % on the test set and a loss of 0.1499. I plotted the confusion metric to visualize model performance on the test set. We can infer that this model can predict the not covered class with high performance compared to the other two classes. And the model can predict a fully covered class with relatively higher accuracy than it can predict a partially covered. To further investigate the model, we draw predictions on a single image from each class. We found that this model can classify an image of a face from the fully covered class correctly with a likelihood of 99.99%. And this model can classify an image of a face from the not covered class correctly with a likelihood of 99.99 %. But the model failed to classify partially covered classes. Model misclassified an image from the partially covered class as not covered with a likelihood of 99.32 %.
 
+## bugs/notes
+To fix dead kernel issue when fitting the model use the following code:
+
+os.environ['KMP_DUPLICATE_LIB_OK']='True'
+
+I kept getting error messages informing me that the kernel have died and restart needed. The above code solved the problem for me. credit to (https://www.kaggle.com/product-feedback/41221) 
 
 ## Needs of this project
 
