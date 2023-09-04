@@ -1,49 +1,64 @@
-# Face Mask Usage
+# Face Mask Usage Classifier
 
-#### Project Status: [Completed]
+**Project Status:** Completed
 
-## Project Introduction/Objective
-The goal of this project is to classify images based on face mask usage into three categories: properly fitted mask (fully covered: mask covers nose and mouth), not properly fitted (partially covered: either the nose or the mouth is not covered), and not wearing a mask (not covered). This is a solo final project. 
+## Project Overview
+The primary objective of this project is to classify images into three categories: 
+1. Fully covered face masks (where the mask covers both the nose and mouth).
+2. Partially covered face masks (where either the nose or mouth is not fully covered).
+3. No face mask worn (not covered).
+
+This project was carried out individually as a final Python programming assignment.
 
 ### Methods Used
-* Machine Learning
-* Deep Learning
-* Predictive Modeling
+- Machine Learning
+- Deep Learning
+- Predictive Modeling
 
 ### Technologies
-* Jupyter
+- Jupyter Notebook
 
-### Used Libraries
-* OpenCV
-* TensorFlow
-* NumPy
-* Matplotlib
+### Libraries Used
+- OpenCV
+- TensorFlow
+- NumPy
+- Matplotlib
 
 ## Project Description
 
-The dataset was obtained from Kaggle ( https://www.kaggle.com/datasets/jamesnogra/face-mask-usage ). I divided the dataset into three parts: 70% for the training set, 20% for the validation set, and 10% for the testing set. The code for data partitioning is provided in a separate IPython Notebook (ipynb file).
+### Data Source
+The dataset used for this project was obtained from Kaggle ([Face Mask Usage Dataset](https://www.kaggle.com/datasets/jamesnogra/face-mask-usage)). 
 
-The original dataset had four classes: fully covered, not covered, not face, and partially covered. For this project, I utilized three classes: fully covered, not covered, and partially covered to train, validate, and test my Convolutional Neural Network (CNN), removing the not face class from the dataset.
+### Data Partitioning
+The dataset was divided into three subsets:
+- 70% for the training set
+- 20% for the validation set
+- 10% for the testing set
 
-For preprocessing, I converted the images in the training set, validation set, and testing set into arrays using the imread function from OpenCV. I created labels and features, with labels representing the target variables (y) for fully covered, not covered, and partially covered, and features (x) extracted from the images.
+The code for data partitioning can be found in a separate IPython Notebook.
 
-I normalized the features in all three sets (training, validation, and testing) by dividing them by 255. The labels in all three sets were converted to a binary class matrix.
+### Data Preprocessing
+- The images in all three sets (training, validation, and testing) were converted into arrays using OpenCV's `imread` function.
+- Labels and features were created, with labels representing the target variables (fully covered, not covered, and partially covered) and features representing the image data.
+- Feature normalization was performed by dividing the pixel values by 255.
+- Labels were converted to a binary class matrix.
 
-I constructed a Convolutional Neural Network (CNN) to classify images into fully covered, not covered, and partially covered categories. My CNN comprises a stack of 2D convolutional layers with ReLU activation functions and max-pooling layers, alternating between them.
+### Convolutional Neural Network (CNN)
+A Convolutional Neural Network (CNN) was designed to classify the images into the three categories. The CNN architecture consists of:
+- Two-dimensional convolutional layers with ReLU activation functions.
+- Max-pooling layers placed alternately with convolutional layers.
+- Filters with sizes of 32 for the first two convolutional layers and 64 for the last two. Various filter sizes, including 32, 64, and 128, were experimented with.
+- A window size of (3,3) and "same" padding.
+- A dropout of 0.25 was added after the max-pooling layers.
+- The final layers include a flatten layer, two dense layers (with 512 neurons and ReLU activation), a dropout layer (0.50), and a dense layer with 3 neurons (softmax activation) for multiclass classification.
+- The CNN model was compiled with categorical cross-entropy as the loss function, Adam optimizer, and accuracy as the performance metric.
+- Early stopping was implemented to prevent overfitting. The training process stops if the validation loss does not improve after 5 epochs.
 
-Filter sizes were set to 32 for the first two convolutional layers and 64 for the last two convolutional layers. I experimented with different filter sizes, including 32, 64, and 128. The window size used was (3,3), with padding set to "same." The activation function used was ReLU.
+### Model Performance
+The CNN model achieved an accuracy of 97.83% on the test set with a loss of 0.1499. A confusion matrix was created to visualize the model's performance. The model demonstrates strong performance in predicting the "not covered" class, surpassing the other two classes. Additionally, it exhibits relatively higher accuracy in predicting the "fully covered" class compared to the "partially covered" class.
 
-Two max-pooling layers with a pool size of (2, 2) were added, one after the second convolutional layer and another after the fourth convolutional layer.
-
-Following the max-pooling layers, a dropout of 0.25 was incorporated.
-
-The last three layers of the CNN consist of a flatten layer and two dense layers. The flatten layer serves as a transition from a 2-dimensional array to a dense layer. The dense layer comprises 512 neurons with a ReLU activation function and a dropout of 0.50. The final layer is a dense layer with 3 neurons (reflecting the 3 classes) and a softmax activation function, which is suitable for multiclass classification.
-
-I compiled the neural network using categorical cross-entropy as the loss function due to the multiclass classification nature of the problem. The optimizer used was Adam, and accuracy was chosen as the performance metric.
-
-To prevent overfitting, I implemented early stopping. The training process monitors the validation loss, and if it does not improve after 5 epochs, training is halted.
-
-The CNN model achieved an accuracy of 97.83% on the test set with a loss of 0.1499. I also generated a confusion matrix to visually assess the model's performance on the test set. It is evident that the model excels in predicting the not covered class, outperforming the other two classes. Additionally, the model exhibits relatively higher accuracy in predicting the fully covered class compared to the partially covered class. For further investigation, I conducted predictions on single images from each class. The model correctly classified an image of a fully covered face with a likelihood of 99.99% and an image of a not covered face with a likelihood of 99.99%. However, the model struggled with the partially covered class, misclassifying an image as not covered with a likelihood of 99.32%.
+### Individual Image Predictions
+For further examination, predictions were made on single images from each class. The model correctly classified an image of a fully covered face with a likelihood of 99.99% and an image of a not covered face with a likelihood of 99.99%. However, the model faced challenges in classifying the "partially covered" class, misclassifying an image as "not covered" with a likelihood of 99.32%.
 
 
 ## Bugs/Notes
