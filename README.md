@@ -1,75 +1,61 @@
 # Face Mask Usage
 
-#### -- Project Status: [Completed]
+#### Project Status: [Completed]
 
-## Project Intro/Objective
-The goal of this project is to classify images as a properly fitted mask (Fully covered: mask covers nose and mouth), not properly fitted (partially covered: the nose or the mouth), and not wearing a mask (not covered).
-This is a solo final project (Python Programming)
+## Project Introduction/Objective
+The goal of this project is to classify images based on face mask usage into three categories: properly fitted mask (fully covered: mask covers nose and mouth), not properly fitted (partially covered: either the nose or the mouth is not covered), and not wearing a mask (not covered). This is a solo final project. 
 
 ### Methods Used
 * Machine Learning
 * Deep Learning
 * Predictive Modeling
 
-
 ### Technologies
-* Jupyter 
+* Jupyter
 
-### used Libraries
+### Used Libraries
 * OpenCV
-*  TensorFlow
-* Numpy
+* TensorFlow
+* NumPy
 * Matplotlib
 
 ## Project Description
 
-The dataset was obtained from Kaggle ( https://www.kaggle.com/datasets/jamesnogra/face-mask-usage ). I partitioned the dataset into 70 % training set, 20 % validation set, 10 % testing set. I attached code for data partitioning in a separate ipynb file.
+The dataset was obtained from Kaggle ( https://www.kaggle.com/datasets/jamesnogra/face-mask-usage ). I divided the dataset into three parts: 70% for the training set, 20% for the validation set, and 10% for the testing set. The code for data partitioning is provided in a separate IPython Notebook (ipynb file).
 
-The original dataset has 4 classes: fully covered, not covered, not face, and partially covered. In this project, I used 3 classes, fully covered, not covered, and partially covered to train, validate, and test my CNN. I removed the not face class from the dataset.
-Preprocessing my training set, validation set, and testing set: converted data into an array, using imread from OpenCV.
-I created my labels and features. Labels are the target variables (y) that are fully covered, not covered, and partially covered. Features (x) that are extracted from the images.
+The original dataset had four classes: fully covered, not covered, not face, and partially covered. For this project, I utilized three classes: fully covered, not covered, and partially covered to train, validate, and test my Convolutional Neural Network (CNN), removing the not face class from the dataset.
 
-I Normalized features, in the three sets (training, validation, and testing) by dividing by 255. Labels, for the three sets (training, validation, and testing) converted to a binary class matrix.
+For preprocessing, I converted the images in the training set, validation set, and testing set into arrays using the imread function from OpenCV. I created labels and features, with labels representing the target variables (y) for fully covered, not covered, and partially covered, and features (x) extracted from the images.
 
+I normalized the features in all three sets (training, validation, and testing) by dividing them by 255. The labels in all three sets were converted to a binary class matrix.
 
-I built a Convolutional Neural Network (CNN) to classify given images into fully covered, not covered, and partially covered. 
-My CNN consists of a stack of 2D convolutional layers with relu activation function, and max-pooling layers interchangeably.
+I constructed a Convolutional Neural Network (CNN) to classify images into fully covered, not covered, and partially covered categories. My CNN comprises a stack of 2D convolutional layers with ReLU activation functions and max-pooling layers, alternating between them.
 
-Filters: size 32 for the first two convolutional layers, and filters of 64 for the last two convolutional layers. I tried different filter sizes 32, 64, and 128. 
+Filter sizes were set to 32 for the first two convolutional layers and 64 for the last two convolutional layers. I experimented with different filter sizes, including 32, 64, and 128. The window size used was (3,3), with padding set to "same." The activation function used was ReLU.
 
-Window size: (3,3). 
+Two max-pooling layers with a pool size of (2, 2) were added, one after the second convolutional layer and another after the fourth convolutional layer.
 
-Padding is the same. 
+Following the max-pooling layers, a dropout of 0.25 was incorporated.
 
-The activation function: relu activation function. 
+The last three layers of the CNN consist of a flatten layer and two dense layers. The flatten layer serves as a transition from a 2-dimensional array to a dense layer. The dense layer comprises 512 neurons with a ReLU activation function and a dropout of 0.50. The final layer is a dense layer with 3 neurons (reflecting the 3 classes) and a softmax activation function, which is suitable for multiclass classification.
 
-Two maxpooling layers were used with a pool size of (2, 2); one layer after the second convolution layer, and another after the fourth convolutional layer.
- 
- After the maxpooling layers, a dropout of 0.25 was added.
+I compiled the neural network using categorical cross-entropy as the loss function due to the multiclass classification nature of the problem. The optimizer used was Adam, and accuracy was chosen as the performance metric.
 
-The last 3 layers of the CNN are a flatten layer and 2 dense layers. The flatten layer is a transitioning layer from a 2-dimensional array to a dense layer. 
-Dense layer of 512 neurons and activation function: relu. 
+To prevent overfitting, I implemented early stopping. The training process monitors the validation loss, and if it does not improve after 5 epochs, training is halted.
 
-Dropout of 0.50. The model ends with a Dense layer with 3 neurons (because we have 3 classes), and softmax activation function; softmax as it’s a multiclass classification.
-
-I compiled the neural network. The loss function is categorical cross-entropy because it is a multiclass classification. The optimizer is Adam, and accuracy is the performance metric.
-
-I implemented early stopping to prevent my model from overfitting. we monitor validation loss if it is not improving after 5 epochs, stop the training data.
+The CNN model achieved an accuracy of 97.83% on the test set with a loss of 0.1499. I also generated a confusion matrix to visually assess the model's performance on the test set. It is evident that the model excels in predicting the not covered class, outperforming the other two classes. Additionally, the model exhibits relatively higher accuracy in predicting the fully covered class compared to the partially covered class. For further investigation, I conducted predictions on single images from each class. The model correctly classified an image of a fully covered face with a likelihood of 99.99% and an image of a not covered face with a likelihood of 99.99%. However, the model struggled with the partially covered class, misclassifying an image as not covered with a likelihood of 99.32%.
 
 
-The CNN model achieved an accuracy of 97.83 % on the test set and a loss of 0.1499. I plotted the confusion metric to visualize model performance on the test set. We can infer that this model can predict the not covered class with high performance compared to the other two classes. And the model can predict a fully covered class with relatively higher accuracy than it can predict a partially covered. To further investigate the model, we draw predictions on a single image from each class. We found that this model can classify an image of a face from the fully covered class correctly with a likelihood of 99.99%. And this model can classify an image of a face from the not covered class correctly with a likelihood of 99.99 %. But the model failed to classify partially covered classes. Model misclassified an image from the partially covered class as not covered with a likelihood of 99.32 %.
-
-## bugs/notes
-To fix dead kernel issue when fitting the model use the following code:
+## Bugs/Notes
+To resolve the dead kernel issue during model fitting, please use the following code:
 
 os.environ['KMP_DUPLICATE_LIB_OK']='True'
 
-I kept getting error messages informing me that the kernel have died and restart needed. The above code solved the problem for me. credit to (https://www.kaggle.com/product-feedback/41221) 
+I encountered persistent error messages indicating that the kernel had died and required restarting. The provided code resolved the issue for me. Credit to (https://www.kaggle.com/product-feedback/41221).
 
-## Needs of this project
-
-- data exploration/descriptive statistics
-- data processing/cleaning
+## Project Requirements
+- Data exploration/descriptive statistics
+- Data processing/cleaning
 
 
 
